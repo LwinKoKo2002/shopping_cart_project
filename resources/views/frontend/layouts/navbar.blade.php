@@ -22,11 +22,11 @@
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-6">
                     <div class="account-nav">
                         <p class="mb-0 d-none d-lg-block">
-                            <a href="login.html">Login</a>
+                            <a href="{{ route('login') }}">Login</a>
                         </p>
                         <p class="mb-0 text-white d-none d-lg-block">/</p>
                         <p class="mb-0 d-none d-lg-block">
-                            <a href="register.html">Signup</a>
+                            <a href="{{ route('register') }}">Signup</a>
                         </p>
                         <p class="mb-0 text-white d-lg-none d-block">
                             <i class="fas fa-bars show-sidebar-btn"></i>

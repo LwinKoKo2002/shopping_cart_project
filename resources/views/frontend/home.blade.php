@@ -1,5 +1,5 @@
 @extends('frontend.layouts.app')
-
+@section('title','Electro')
 @section('content')
 <!----------- Feature Product ----------->
 <section class="feature-product">

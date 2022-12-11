@@ -15,9 +15,9 @@ class CreateAddToCartsTable extends Migration
     {
         Schema::create('add_to_carts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('customer_id');
             $table->foreignId('product_id');
             $table->integer('quantity');
-            $table->decimal('total_price', 20, 2);
             $table->timestamps();
         });
     }

@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@yield('title','Products')
 @section('content')
 <!--------- Product  ----------->
 <section class="product">

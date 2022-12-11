@@ -11,6 +11,7 @@ Auth::routes();
 Route::get('/', [PageController::class,'index'])->name('home');
 Route::get('/brands/{brand}', [PageController::class,'brand']);
 Route::get('/products/{product}', [PageController::class,'product']);
+Route::post('/add-to-cart', [PageController::class,'add_to_cart']);
 
 Route::get('/admin/login', [AdminLoginController::class,'showLoginForm']);
 Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login');

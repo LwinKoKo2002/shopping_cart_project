@@ -95,7 +95,6 @@ let screenHeight = $(window).height();
 
 $(window).scroll(function () {
   let currentPosition = $(this).scrollTop();
-  // console.log(currentPosition);
   if (currentPosition > screenHeight - 600) {
     $(".upbar").css("display", "block");
   } else {
@@ -103,8 +102,8 @@ $(window).scroll(function () {
   }
 });
 
-$(window).on("load", function () {
-  $(".loader-container").fadeOut(500, function () {
-    $(this).remove();
-  });
-});
+// $(window).on("load", function () {
+//   $(".loader-container").fadeOut(500, function () {
+//     $(this).remove();
+//   });
+// });

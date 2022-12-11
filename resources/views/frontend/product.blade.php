@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@section('title','Product Detail')
 @section('content')
 <!--------- Product  Detail----------->
 <section class="product-detail">
@@ -40,7 +41,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12 col-12">
-                    <div class="card product-checkout-section shadow-sm">
+                    <div class="card product-checkout-section shadow-sm product_data">
                         <div class="card-body">
                             <h5>{{$product->model}} {{$product->storage}}</h5>
                             <hr />
@@ -55,6 +56,7 @@
                                     <button class="btn btn-light decrement_btn">
                                         <i class="fa-solid fa-minus"></i>
                                     </button>
+                                    <input type="hidden" value="{{ $product->id }}" class="product_id">
                                     <input type="text" name="quantity" value="1" class="qty_input" />
                                     <button class="btn btn-light increment_btn">
                                         <i class="fa-solid fa-plus"></i>
@@ -63,7 +65,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-12 col-12">
-                                    <button class="btn add-btn btn-block">Add to cart</button>
+                                    <button class="btn add-btn btn-block add_to_cart">Add to cart</button>
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-12">
                                     <button class="btn buy-btn btn-block">By it now</button>
@@ -73,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-7 col-md-12 col-sm-12 col-12">
                     <div class="card review shadow-sm">
                         <div class="card-body">
@@ -92,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -101,32 +103,48 @@
 <script>
     $(document).ready(function(){
         var product_qty = "{{$product->quantity}}";
+
         $('.increment_btn').on('click',function(e){
             e.preventDefault();
-            let inc_value = $('.qty_input').val();
+            let inc_value = $(this).closest('.product_data').find('.qty_input').val();
             let  value = parseInt(inc_value,product_qty);
-             value = isNaN(value) ? '0' : value;
-             if(value < product_qty){
+                value = isNaN(value) ? '0' : value;
+                if(value < product_qty){
                     value++;
-                    $('.qty_input').val(value);
-             }
+                    $(this).closest('.product_data').find('.qty_input').val(value);
+                }
         })
 
         $('.decrement_btn').on('click',function(e){
             e.preventDefault();
-            let dec_value = $('.qty_input').val();
+            let dec_value = $(this).closest('.product_data').find('.qty_input').val();
             let  value = parseInt(dec_value,product_qty);
-             value = isNaN(value) ? '0' : value;
-             if(value > 1){
+                value = isNaN(value) ? '0' : value;
+                if(value > 1){
                     value--;
-                    $('.qty_input').val(value);
-             }
+                    $(this).closest('.product_data').find('.qty_input').val(value);
+                }
         })
-        // $('.add-btn').on('click',function(e){
-        //     e.preventDefault();
-        //     let qty = document.querySelector('.input_qty').val();
-        //     alert(qty);
-        // })
+        $('.add_to_cart').on('click',function(e){
+            e.preventDefault();
+            let product_id = $(this).closest('.product_data').find('.product_id').val();
+            let qty = $(this).closest('.product_data').find('.qty_input').val();
+            $.ajax({
+                method: "POST",
+                url: "/add-to-cart",
+                data: {
+                    'product_id':product_id,
+                    'qty':qty
+                },
+                success: function (response) {
+                    if(response.status === 'success'){
+                        Swal.fire(response.message);
+                    }else{
+                        Swal.fire(response.message);
+                    }
+                }
+            });
+        })
     })
 </script>
 @endsection
