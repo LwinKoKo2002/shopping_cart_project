@@ -21,6 +21,7 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-6">
                     <div class="account-nav">
+                        @guest
                         <p class="mb-0 d-none d-lg-block">
                             <a href="{{ route('login') }}">Login</a>
                         </p>
@@ -28,6 +29,14 @@
                         <p class="mb-0 d-none d-lg-block">
                             <a href="{{ route('register') }}">Signup</a>
                         </p>
+                        @endguest
+                        @auth
+                        <p class="mb-0 d-none d-lg-block text-white mr-2">{{ auth()->user()->name }}</p>
+                        <form action="{{ route('logout') }}" method="POST" class="d-none d-lg-block">
+                            @csrf
+                            <button type="submit " class="logout-btn btn btn-link mr-2">Logout</button>
+                        </form>
+                        @endauth
                         <p class="mb-0 text-white d-lg-none d-block">
                             <i class="fas fa-bars show-sidebar-btn"></i>
                         </p>
@@ -37,8 +46,11 @@
                         <p class="mb-0 text-white d-lg-none d-block">
                             <a href="login.html"><i class="fas fa-user"></i></a>
                         </p>
-                        <p class="mb-0 text-white">
-                            <a href=""><i class="fas fa-shopping-cart"></i></a>
+                        <p class="mb-0 text-white cart">
+                            <a href="{{ route('showCart') }}"><i class="fas fa-shopping-cart"></i></a>
+                            @auth
+                            <span class="badge badge-pill badge-light cart_count"></span>
+                            @endauth
                         </p>
                     </div>
                 </div>

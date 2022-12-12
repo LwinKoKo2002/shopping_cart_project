@@ -69,4 +69,56 @@ class PageController extends Controller
             'message'=>'Please Login First'
         ]);
     }
+
+    public function load_cart_count()
+    {
+        $cartcount = AddToCart::where('customer_id', auth()->id())->count();
+        return response()->json([
+            'count'=>$cartcount
+        ]);
+    }
+
+    public function showCart()
+    {
+        $brands = Brand::all();
+        $carts = AddToCart::where('customer_id', auth()->id())->get();
+        return view('frontend.showCart', compact('carts', 'brands'));
+    }
+
+    public function deleteCart(Product $product)
+    {
+        if (Auth::check()) {
+            $cart = AddToCart::where('product_id', $product->id)->where('customer_id', auth()->id())->first();
+            $cart->delete();
+            return response()->json([
+                'status'=>'success',
+                'message'=>'Successfully deleted.'
+            ]);
+        }
+        return response()->json([
+            'status'=>'fail',
+            'message'=>'Please Login First'
+        ]);
+    }
+
+    public function updateCart(Request $request)
+    {
+        $product_id = $request->product_id;
+        $input_qty = $request->qty;
+        if (Auth::check()) {
+            if (AddToCart::where('product_id', $product_id)->where('customer_id', auth()->id())->exists()) {
+                $cart = AddToCart::where('product_id', $product_id)->where('customer_id', auth()->id())->first();
+                $cart->quantity = $input_qty;
+                $cart->update();
+                return response()->json([
+                    'status'=>'success',
+                    'message'=>'Successfully deleted.'
+                ]);
+            }
+        }
+        return response()->json([
+            'status'=>'fail',
+            'message'=>'Please Login First'
+        ]);
+    }
 }

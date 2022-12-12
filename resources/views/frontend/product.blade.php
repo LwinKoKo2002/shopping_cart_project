@@ -56,6 +56,7 @@
                                     <button class="btn btn-light decrement_btn">
                                         <i class="fa-solid fa-minus"></i>
                                     </button>
+                                    <input type="hidden" value="{{ $product->quantity }}" class="product_qty">
                                     <input type="hidden" value="{{ $product->id }}" class="product_id">
                                     <input type="text" name="quantity" value="1" class="qty_input" />
                                     <button class="btn btn-light increment_btn">
@@ -100,51 +101,4 @@
 </section>
 @endsection
 @section('scripts')
-<script>
-    $(document).ready(function(){
-        var product_qty = "{{$product->quantity}}";
-
-        $('.increment_btn').on('click',function(e){
-            e.preventDefault();
-            let inc_value = $(this).closest('.product_data').find('.qty_input').val();
-            let  value = parseInt(inc_value,product_qty);
-                value = isNaN(value) ? '0' : value;
-                if(value < product_qty){
-                    value++;
-                    $(this).closest('.product_data').find('.qty_input').val(value);
-                }
-        })
-
-        $('.decrement_btn').on('click',function(e){
-            e.preventDefault();
-            let dec_value = $(this).closest('.product_data').find('.qty_input').val();
-            let  value = parseInt(dec_value,product_qty);
-                value = isNaN(value) ? '0' : value;
-                if(value > 1){
-                    value--;
-                    $(this).closest('.product_data').find('.qty_input').val(value);
-                }
-        })
-        $('.add_to_cart').on('click',function(e){
-            e.preventDefault();
-            let product_id = $(this).closest('.product_data').find('.product_id').val();
-            let qty = $(this).closest('.product_data').find('.qty_input').val();
-            $.ajax({
-                method: "POST",
-                url: "/add-to-cart",
-                data: {
-                    'product_id':product_id,
-                    'qty':qty
-                },
-                success: function (response) {
-                    if(response.status === 'success'){
-                        Swal.fire(response.message);
-                    }else{
-                        Swal.fire(response.message);
-                    }
-                }
-            });
-        })
-    })
-</script>
 @endsection
