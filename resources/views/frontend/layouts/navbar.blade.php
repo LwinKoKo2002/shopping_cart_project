@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-4">
                     <div class="brand-nav">
-                        <a href="index.html">
+                        <a href="/">
                             <img src="{{asset('/frontend/images/logo.png')}}" alt="logo-picture" />
                         </a>
                     </div>

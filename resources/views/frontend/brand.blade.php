@@ -53,7 +53,7 @@
                         @if ($product->quantity < 1) <p class="text-danger pl-2">
                             <i class="fas fa-circle"></i> Out of stock
                             </p>
-                            @elseif($product->quantity < 3) <p class="text-danger pl-2">
+                            @elseif($product->quantity < 5) <p class="text-danger pl-2">
                                 <i class="fas fa-circle"></i> Only {{$product->quantity}} unit left
                                 </p>
                                 @else

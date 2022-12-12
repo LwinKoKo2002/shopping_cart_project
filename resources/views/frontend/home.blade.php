@@ -42,3 +42,18 @@
     </div>
 </section>
 @endsection
+@section('scripts')
+<script>
+    $(document).ready(function () {
+        @if (session('success')) 
+                    Swal.fire({
+            position: 'middle-middle',
+            icon: 'success',
+            title: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 1500
+            })
+        @endif
+});
+</script>
+@endsection
