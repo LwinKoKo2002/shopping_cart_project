@@ -181,6 +181,8 @@ class PageController extends Controller
             $user->phone = $request->phone;
             $user->address = $request->address;
             $user->city_id = $request->city_id;
+            $user->fname = $request->fname;
+            $user->lname = $request->lname;
             $user->update();
         }
         $cartItems = AddToCart::where('customer_id', auth()->id())->get();

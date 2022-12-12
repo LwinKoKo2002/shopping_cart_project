@@ -45,11 +45,6 @@
                         <a href="/products/{{$product->id}}" class="product-title pl-2">{{$product->model}}
                             {{$product->storage}}</a>
                         <p class="text-warning pl-2">Ks {{number_format($product->selling_price)}}</p>
-                        <a href="" class="product-review pl-2 text-black-50">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                            No reviews
-                        </a>
                         @if ($product->quantity < 1) <p class="text-danger pl-2">
                             <i class="fas fa-circle"></i> Out of stock
                             </p>

@@ -15,7 +15,7 @@
                                                                         <input type="text"
                                                                                 class="form-control @error('fname') is-invalid @enderror"
                                                                                 placeholder="First name" name="fname"
-                                                                                value="{{ old('fname') }}" />
+                                                                                value="{{ old('fname',auth()->user()->fname) }}" />
                                                                         @error('fname')
                                                                         <small class="text-danger">{{ $message
                                                                                 }}</small>
@@ -27,7 +27,7 @@
                                                                         <input type="text"
                                                                                 class="form-control @error('lname') is-invalid @enderror"
                                                                                 placeholder="Last name" name="lname"
-                                                                                value="{{ old('lname') }}" />
+                                                                                value="{{ old('lname',auth()->user()->lname) }}" />
                                                                         @error('lname')
                                                                         <small class="text-danger">{{ $message
                                                                                 }}</small>

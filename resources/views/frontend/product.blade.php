@@ -65,12 +65,18 @@
                                 </div>
                             </div>
                             <div class="row">
+                                @if ($product->quantity > 0)
                                 <div class="col-md-6 col-sm-12 col-12">
                                     <button class="btn add-btn btn-block add_to_cart">Add to cart</button>
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-12">
-                                    <button class="btn buy-btn btn-block">By it now</button>
+                                    <button class="btn buy-btn btn-block buy_btn">By it now</button>
                                 </div>
+                                @else
+                                <div class="col-md-12 col-sm-12 col-12 mt-3">
+                                    <span class="badge badge-danger" style="letter-spacing: 1px">Out of stock</span>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -101,4 +107,27 @@
 </section>
 @endsection
 @section('scripts')
+<script>
+    $('.buy_btn').click(function(e){
+        e.preventDefault();
+        let product_id = $(this).closest('.product_data').find('.product_id').val();
+        let qty = $(this).closest('.product_data').find('.qty_input').val();
+        $.ajax({
+            method: "POST",
+            url: "/add-to-cart",
+            data: {
+                'product_id':product_id,
+                'qty':qty
+            },
+            success: function (response) {
+                if(response.status === 'success'){
+                    window.location.replace('/checkout');
+                    loadCartCount();
+                }else{
+                    Swal.fire(response.message);
+                }
+            }
+        });
+    })
+</script>
 @endsection
