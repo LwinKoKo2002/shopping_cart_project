@@ -9,9 +9,11 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\AddToCart;
 use App\Models\OrderItem;
+use App\Mail\ProductOrder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
 {
@@ -189,6 +191,7 @@ class PageController extends Controller
         foreach ($cartItems as $cart) {
             $cart->delete();
         }
+        Mail::to(auth()->user()->email)->send(new ProductOrder($orderItem));
         return redirect()->route('home')->with(['success'=>'Successfully ordered.']);
     }
 
@@ -196,5 +199,25 @@ class PageController extends Controller
     {
         $brands = Brand::all();
         return view('frontend.contact', compact('brands'));
+    }
+
+    public function autoComplete()
+    {
+        $brands = Brand::all();
+        $data = [];
+        foreach ($brands as $brand) {
+            $data[] = $brand->name;
+        }
+        return $data;
+    }
+
+    public function brandSearch()
+    {
+        $brand_search = request()->brand_search;
+        $brand = Brand::where('name', 'like', '%'.$brand_search .'%')->first();
+        return response()->json([
+            'status'=>'success',
+            'brand_id'=>$brand->id
+        ]);
     }
 }

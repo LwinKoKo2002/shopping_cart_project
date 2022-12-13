@@ -130,6 +130,21 @@ $('.changeBtn').click(function(e){
   });
 });
 
+//Search Feature Submit Button
+$(".submit_btn").click(function(e){
+  e.preventDefault();
+  var brand_search = $('.brand_search').val();
+  $.ajax({
+    url: "/brand-search",
+    type: "GET",
+    data: { brand_search },
+    success: function (response) {
+      if(response.status == 'success'){
+          window.location.replace( "/brands/"+response.brand_id);
+      }
+    }
+  });
+})
 // Slider
 $(".notebook-slide").slick({
   arrows: false,

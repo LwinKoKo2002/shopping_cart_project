@@ -12,9 +12,10 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-2">
                     <div class="search-nav">
                         <div class="search-input">
-                            <input type="search" name="search" placeholder="Search ...." class="form-control" />
+                            <input type="search" name="search" placeholder="Search ...."
+                                class="form-control brand_search" id="brand_search" />
                         </div>
-                        <button class="btn-theme">
+                        <button class="btn-theme submit_btn">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -52,7 +53,7 @@
                             <span class="badge badge-pill badge-light cart_count"></span>
                             @endauth
                         </p>
-                        <span class="text-white ml-3 d-none d-md-block">Cart</span>
+                        <span class="text-white ml-2 d-none d-md-block">Cart</span>
                     </div>
                 </div>
             </div>
@@ -60,9 +61,10 @@
                 <div class="col-12">
                     <div class="search-nav-two">
                         <div class="search-input">
-                            <input type="text" name="search" placeholder="Search ...." class="form-control" />
+                            <input type="text" name="search" placeholder="Search ...." class="form-control"
+                                id="brand_mini_search" class="brand_search" />
                         </div>
-                        <button class="btn-theme">
+                        <button class="btn-theme submit_btn">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>

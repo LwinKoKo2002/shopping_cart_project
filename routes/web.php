@@ -17,6 +17,8 @@ Route::get('/', [PageController::class,'index'])->name('home');
 Route::get('/brands/{brand}', [PageController::class,'brand']);
 Route::get('/products/{product}', [PageController::class,'product']);
 Route::get('/contact', [PageController::class,'contact'])->name('contact');
+Route::get('/auto-complete', [PageController::class,'autoComplete']);
+Route::get('/brand-search', [PageController::class,'brandSearch']);
 Route::post('/add-to-cart', [PageController::class,'add_to_cart']);
 Route::post('/delete-cart/{product}', [PageController::class,'deleteCart']);
 Route::post('/update-cart-quantity', [PageController::class,'updateCart']);

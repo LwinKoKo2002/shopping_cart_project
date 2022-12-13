@@ -6,26 +6,20 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="product-header">
+                <div class="product-header mb-2">
                     <div class="row">
                         <div class="col-md-6 col-12">
-                            <div class="product-title">
-                                <h5>{{$brand->name}}</h5>
-                                <p class="text-black-50">
-                                    {{$brand->products->count()}} items found in
-                                    <span>{{$brand->name}}</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="product-filter row align-items-center my-2">
-                                <div class="col-3 text-lg-right text-md-right text-sm-left text-left">
-                                    <p class="mb-0">Sort By :</p>
+                            <div class="d-flex align-items-center">
+                                <div class="product-image-container">
+                                    <img src='{{ asset("/storage/brand/$brand->brand_image") }}' alt="brand_img"
+                                        class="product-img">
                                 </div>
-                                <div class="col-9 pl-0">
-                                    <select class="custom-select">
-                                        <option>Large select</option>
-                                    </select>
+                                <div class="product-title">
+                                    <h5>{{$brand->name}}</h5>
+                                    <p class="text-black-50">
+                                        {{$brand->products->count()}} items found in
+                                        <span>{{$brand->name}}</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>

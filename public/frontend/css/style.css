@@ -118,6 +118,10 @@ input[type="number"] {
     padding: 20px;
 }
 
+#ui-id-1 {
+    z-index: 2010;
+}
+
 .site-nav .logout-btn {
     color: white;
     text-decoration: none;
@@ -306,6 +310,10 @@ input[type="number"] {
         text-align: left;
     }
 
+    ul.ui-menu {
+        z-index: 2010;
+    }
+
     .brand-nav img {
         width: 100px;
     }
@@ -377,6 +385,7 @@ input[type="number"] {
         display: block;
     }
 }
+
 /* ---------------------Start for Carousel ------------------------- */
 .carousel-section {
     background-color: var(--light);
@@ -816,7 +825,7 @@ input[type="number"] {
 
 /*------------------------ Address --------------------------*/
 .contact .map {
-    margin-top: 180px;
+    margin-top: 0px;
 }
 
 .address {
@@ -933,7 +942,11 @@ input[type="number"] {
         margin-bottom: 5px;
     }
 }
-
+@media screen and (max-width: 480px) {
+    .contact .map {
+        margin-top: 120px;
+    }
+}
 /*------------------------ Loading ------------------------*/
 .loader-container {
     display: flex;
@@ -1094,20 +1107,18 @@ input[type="number"] {
 .product p {
     font-size: 16px;
 }
-
-.product-filter p {
-    font-size: 16px;
+.product .product-image-container {
+    width: 100px;
+    height: 100px;
+    border: 2px solid var(--secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
 }
 
-.product-filter select {
-    font-size: 18px !important;
-    cursor: pointer;
-}
-
-.product-filter select:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border: 2px solid var(--light-danger);
+.product .product-image-container img {
+    width: 80px;
 }
 
 .product-item {
@@ -1169,14 +1180,6 @@ input[type="number"] {
     }
     .card .p-2 {
         padding: 0px !important;
-    }
-
-    .product-filter p {
-        font-size: 14px;
-    }
-
-    .product-filter select {
-        font-size: 16px !important;
     }
 
     .product-item .product-image img {

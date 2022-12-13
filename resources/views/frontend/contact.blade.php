@@ -11,12 +11,14 @@
                         <div class="row address-first-part">
                                 <div class="col-12">
                                         <h6 class="text-uppercase">Send Us A Mail</h6>
-                                        <form>
+                                        <form action="" method="POST">
+                                                @csrf
                                                 <div class="row">
                                                         <div class="col-12 col-md-6">
                                                                 <div class="form-group">
-                                                                        <input type="text" class="form-control"
-                                                                                placeholder="Your First Name" />
+                                                                        <input type="text" class="form-control "
+                                                                                placeholder="Your First Name"
+                                                                                name="fname" required autofocus />
                                                                 </div>
                                                         </div>
                                                         <div class="col-12 col-md-6">
@@ -59,7 +61,8 @@
                                 <div class="col-12 col-md-6 col-lg-3" style="padding: 5px">
                                         <div class="contact-feature">
                                                 <div class="contact-img">
-                                                        <img src="images/iphone.png" alt="" class="mr-1" />
+                                                        <img src="{{ asset('/frontend/images/iphone.png') }}" alt=""
+                                                                class="mr-1" />
                                                 </div>
                                                 <div class="contact-item">
                                                         <p class="font-weight-bold">
@@ -74,7 +77,8 @@
                                 <div class="col-12 col-md-6 col-lg-3" style="padding: 5px">
                                         <div class="contact-feature">
                                                 <div class="contact-img">
-                                                        <img src="images/chat.png" alt="" class="mb-0 mr-2" />
+                                                        <img src="{{ asset('/frontend/images/chat.png') }}" alt=""
+                                                                class="mb-0 mr-2" />
                                                 </div>
                                                 <div class="contact-item">
                                                         <p class="font-weight-bold">
@@ -87,8 +91,8 @@
                                 <div class="col-12 col-md-6 col-lg-3" style="padding: 5px">
                                         <div class="contact-feature">
                                                 <div class="contact-img">
-                                                        <img src="images/calendar.png" alt="" style="width: 40px"
-                                                                class="mr-2" />
+                                                        <img src="{{ asset('/frontend/images/calendar.png') }}" alt=""
+                                                                style="width: 40px" class="mr-2" />
                                                 </div>
                                                 <div class="contact-item">
                                                         <p class="font-weight-bold">Shop opening timing</p>
@@ -99,7 +103,8 @@
                                 <div class="col-12 col-md-6 col-lg-3" style="padding: 5px">
                                         <div class="contact-feature">
                                                 <div class="contact-img">
-                                                        <img src="images/location.png" alt="" class="mr-1" />
+                                                        <img src="{{ asset('/frontend/images/location.png') }}" alt=""
+                                                                class="mr-1" />
                                                 </div>
                                                 <div class="contact-item">
                                                         <p class="font-weight-bold">3548 Columbia Mine Road,</p>
