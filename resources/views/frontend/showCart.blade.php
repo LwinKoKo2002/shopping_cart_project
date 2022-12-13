@@ -4,6 +4,7 @@
 <section class="add-to-cart ">
         <div class="d-flex justify-content-center">
                 <div class="col-xl-9 col-lg-10">
+                        @if ($carts->count() > 0)
                         <div class="row">
                                 <div class="col-12">
                                         <h5>My Cart</h5>
@@ -121,6 +122,17 @@
                                         </div>
                                 </div>
                         </div>
+                        @else
+                        <div class="text-center shopping">
+                                {{-- <a href="https://iconscout.com/illustrations/empty-cart" target="_blank">Empty cart
+                                        Illustration</a> by <a href="https://iconscout.com/contributors/iconscout"
+                                        target="_blank">IconScout Store</a> --}}
+                                <img src="{{ asset('/frontend/images/empty.webp') }}" alt="shopping-cart">
+                                <h2 class="my-4 text-danger">Oops! Your Cart is Empty</h2>
+                                <p>Looks like you haven't added anything to your cart yet!</p>
+                                <a href="{{ route('home') }}" class="btn btn-theme my-4">Continue to shopping</a>
+                        </div>
+                        @endif
                 </div>
         </div>
 </section>

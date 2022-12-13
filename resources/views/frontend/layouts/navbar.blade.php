@@ -12,7 +12,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-2">
                     <div class="search-nav">
                         <div class="search-input">
-                            <input type="text" name="search" placeholder="Search ...." class="form-control" />
+                            <input type="search" name="search" placeholder="Search ...." class="form-control" />
                         </div>
                         <button class="btn-theme">
                             <i class="fas fa-search"></i>
@@ -52,6 +52,7 @@
                             <span class="badge badge-pill badge-light cart_count"></span>
                             @endauth
                         </p>
+                        <span class="text-white ml-3 d-none d-md-block">Cart</span>
                     </div>
                 </div>
             </div>
@@ -103,7 +104,7 @@
                     </div>
                 </li>
                 <li class="ml-xl-5 ml-lg-5 text-center">
-                    <a href="contact.html">Contact Us</a>
+                    <a href="{{ route('contact') }}">Contact Us</a>
                 </li>
             </ul>
         </div>

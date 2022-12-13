@@ -101,7 +101,7 @@
                                                         <div class="product-summary-image">
                                                                 <img src="{{ $cartItem->product->get_image_path() }}"
                                                                         alt="{{ $cartItem->product->model }}" />
-                                                                <span class="badge badge-pill">{{ $cartItem->product_id
+                                                                <span class="badge badge-pill">{{ $cartItem->quantity
                                                                         }}</span>
                                                         </div>
                                                         <div class="product-summary-title">

@@ -191,4 +191,10 @@ class PageController extends Controller
         }
         return redirect()->route('home')->with(['success'=>'Successfully ordered.']);
     }
+
+    public function contact()
+    {
+        $brands = Brand::all();
+        return view('frontend.contact', compact('brands'));
+    }
 }

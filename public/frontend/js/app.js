@@ -10,11 +10,9 @@ $(document).ready(function (event) {
     $.ajax({
       method: "GET",
       url: "/load-cart-count",
-      success: function (response) {
-        if(response.count){
+      success: function (response) {  
           $('.cart_count').html('');
           $('.cart_count').html(response.count);
-        }
       }
     });
   }

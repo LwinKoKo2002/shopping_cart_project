@@ -203,8 +203,16 @@ input[type="number"] {
     color: white;
     font-size: 12px;
     position: absolute;
-    top: -10px;
-    right: -15px;
+    top: -8px;
+    right: -13px;
+    padding: 3px 6px;
+    text-align: center;
+    transition: 0.4s;
+}
+
+.account-nav .cart_count:hover {
+    cursor: pointer;
+    transform: scale(1.2);
 }
 
 .search-nav-two {
@@ -1501,6 +1509,31 @@ input[type="number"] {
     margin: 40px 7px;
 }
 
+.add-to-cart .shopping {
+    margin: 100px 0px;
+}
+
+.add-to-cart .shopping img {
+    width: 350px;
+    height: auto;
+}
+
+.shopping h2 {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.shopping .btn-theme {
+    letter-spacing: 0.5px;
+    border-radius: 5px !important;
+    padding: 15px 30px !important;
+    box-shadow: 0 4px 9px -4px var(--light-danger);
+}
+
+.shopping p {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
 .table-responsive th {
     font-size: 15px;
     font-weight: normal !important;

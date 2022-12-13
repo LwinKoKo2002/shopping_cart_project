@@ -16,6 +16,7 @@ Route::post('/admin/logout', [AdminLoginController::class,'logout'])->name('admi
 Route::get('/', [PageController::class,'index'])->name('home');
 Route::get('/brands/{brand}', [PageController::class,'brand']);
 Route::get('/products/{product}', [PageController::class,'product']);
+Route::get('/contact', [PageController::class,'contact'])->name('contact');
 Route::post('/add-to-cart', [PageController::class,'add_to_cart']);
 Route::post('/delete-cart/{product}', [PageController::class,'deleteCart']);
 Route::post('/update-cart-quantity', [PageController::class,'updateCart']);
