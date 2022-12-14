@@ -103,16 +103,15 @@
                             @enderror
                         </div>
                         <button class="btn btn-block" type="submit">Login</button>
-                        <p class="text-center signup-choice">Or Sign Up using</p>
-                        <div class="text-center icon-feature">
-                            <a href="">
-                                <img src="{{ asset('/frontend/images/facebook.png') }}" alt="facebook-icon" />
-                            </a>
-                            <a href="">
-                                <img src="{{ asset('/frontend/images/google.png') }}" alt="google-icon" /></a>
-                        </div>
-                        <p class="mt-4 text-center">
+                        <p class="mt-4 text-center mb-2">
                             New Customer?<a href="{{ route('register') }}" class="ml-1">Create your account</a>
+                        </p>
+                        <p class="text-center">
+                            Lost Password? @if (Route::has('password.request'))
+                            <a href="{{ route('password.request') }}">
+                                Recover password
+                            </a>
+                            @endif
                         </p>
                     </form>
                 </div>

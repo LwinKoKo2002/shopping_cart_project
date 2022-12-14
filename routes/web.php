@@ -6,14 +6,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Customer Auth
-Auth::routes();
+Auth::routes([
+    'verify'=>true
+]);
 // Admin Auth
 Route::get('/admin/login', [AdminLoginController::class,'showLoginForm']);
 Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login');
 Route::post('/admin/logout', [AdminLoginController::class,'logout'])->name('admin.logout');
 
 
-Route::get('/', [PageController::class,'index'])->name('home');
+Route::get('/', [PageController::class,'index'])->middleware('verified')->name('home');
 Route::get('/brands/{brand}', [PageController::class,'brand']);
 Route::get('/products/{product}', [PageController::class,'product']);
 Route::get('/contact', [PageController::class,'contact'])->name('contact');

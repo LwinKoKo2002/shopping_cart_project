@@ -17,19 +17,18 @@
                 <div class="col-md-6">
                         <div class="card">
                                 <div class="card-body">
-                                        <div
-                                                style="width: 40px;height:40px;background-color:aqua;border-radius:50%;display:flex;justify-content:center;align-items:center;">
-                                                <i class="fa-solid fa-check" style="font-size: 20px"></i>
-                                        </div>
                                         Dear {{ $order->customer->name }} ,<br>
                                         Thanks for buying our products.
-                                        <p>Please wait for your products for {{ $order->city->duration->delivery_time }}
+                                        <p>Please wait for your products for {{ $order->city->duration->delivery_time
+                                                }} to arrive your home.
                                         </p>
                                         @foreach ($order->orderItems as $item)
-                                        <h4>Model - {{ $item->product->model }} {{ $item->product->storage }}</h4>
+                                        <h4>Name - {{ $item->product->model }}</h4>
+                                        <p>Storage - {{ $item->product->storage }}</p>
+                                        <p>Ram - {{ $item->product->ram }}</p>
+                                        <p>Cpu - {{ $item->product->cpu }}</p>
                                         <p>Quantity - {{ $item->quantity }}</p>
-                                        <p>Selling Price - {{ $item->product->selling_price }}</p>
-                                        <div style="width: 400px;margin-bottom:2px solid black;"></div>
+                                        <p>Selling Price - {{ number_format($item->product->selling_price) }} MMK</p>
                                         <p style="margin-bottom:30px;">Total Price - {{
                                                 number_format($item->order->total )}} MMK</p>
                                         @endforeach

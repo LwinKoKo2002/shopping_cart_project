@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="{{asset('/frontend/css/style.css')}}" />
 </head>
 
-<body>
+<body class=" bg-secondary">
 
         @yield('content')
 
