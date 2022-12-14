@@ -1809,6 +1809,9 @@ input[type="checkbox"] {
     color: var(--white);
     font-weight: bolder;
 }
+.reset-email-link .btn-login {
+    margin-top: 40px;
+}
 
 .reset-email-link .sign-up-text {
     margin-bottom: 20px;

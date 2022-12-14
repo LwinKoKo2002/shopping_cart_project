@@ -1,7 +1,6 @@
 @extends('frontend.layouts.app_plain')
-
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -44,19 +43,6 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{
-                                        old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -75,5 +61,45 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+<section class="container reset-email-link">
+    <div class="row justify-content-center align-items-center" style="min-height: 100vh">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3>Admin Login</h3>
+                    <form method="POST" action="{{ route('admin.login') }}">
+                        @csrf
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
+                                placeholder="Your Email">
+
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <small>{{ $message }}</small>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input id="password" type="password"
+                                class="form-control @error('password') is-invalid @enderror" name="password" required
+                                autocomplete="current-password" placeholder="Your Password">
+
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <small>{{ $message }}</small>
+                            </span>
+                            @enderror
+                        </div>
+                        <button class="btn btn-block btn-login" type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
 @endsection

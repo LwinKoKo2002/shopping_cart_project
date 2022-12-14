@@ -5,13 +5,13 @@ use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\OrderController;
-use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\DurationController;
 use App\Http\Controllers\Backend\AddToCartController;
 use App\Http\Controllers\Backend\AdminUserController;
+use App\Http\Controllers\Backend\OrderItemController;
 
 Route::prefix('admin')->name('admin.')->middleware('auth:admin_user')->group(function () {
     Route::get('/', [PageController::class,'index'])->name('home');
@@ -33,4 +33,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin_user')->group(fun
     Route::get('/admin/add-to-cart/datatable/ssd', [AddToCartController::class,'ssd'])->name('add-to-cart.datatable.ssd');
     Route::resource('order', OrderController::class);
     Route::get('/admin/order/datatable/ssd', [OrderController::class,'ssd'])->name('order.datatable.ssd');
+    Route::get('/admin/order_item/index', [OrderItemController::class,'index'])->name('order_item.index');
+    Route::get('/admin/order_item/datatable/ssd', [OrderItemController::class,'ssd'])->name('order_item.datatable.ssd');
 });

@@ -5,7 +5,7 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="pe-7s-users pe-7s-news-paper">
+                <i class="pe-7s-users pe-7s-edit">
                 </i>
             </div>
             <div>
@@ -14,22 +14,17 @@
         </div>
     </div>
 </div>
-<div class="add-btn mb-4">
-    <a class="btn secondary-color font-weight-bold" href="{{route('admin.order.create')}}">
-        <i class="fa-sharp fa-solid fa-user-plus mr-1"></i>
-        <span> Create Order</span>
-    </a>
-</div>
-
 <div class="card">
     <div class="card-body">
         <table id="Datatable" class="table table-bordered mb-2" style="width:100%">
             <thead class="secondary-color">
-                <th class="denied"></th>
                 <th>Customer</th>
-                <th>Quantity</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>City</th>
+                <th class="denied">Order Items</th>
                 <th>Total Price (MMK)</th>
-                <th class="denied">Action</th>
                 <th class="denied">updated_at</th>
             </thead>
             <tbody></tbody>
@@ -45,17 +40,19 @@
         processing: true,
         serverSide: true,
         responsive: true,
-        ajax: '{{route("admin.add-to-cart.datatable.ssd")}}',
+        ajax: '{{route("admin.order.datatable.ssd")}}',
         columns: [
-            { data: 'plus-icon', name : 'plus-icon'},     
-            { data: 'product_id' , name : 'product_id'} ,
-            { data: 'quantity' , name : 'quantity'} ,
-            { data: 'total_price' , name : 'total_price'},
-            { data : 'action' , name : 'action'},
+            { data: 'customer', name : 'customer'},     
+            { data: 'email' , name : 'email'} ,
+            { data: 'phone' , name : 'phone'} ,
+            { data: 'address' , name : 'address'} ,
+            { data: 'city_id' , name : 'city_id'} ,
+            { data: 'order_item' , name : 'order_item'} ,
+            { data: 'total' , name : 'total'},
             { data: 'updated_at', name: 'updated_at' }
         ],
         "order": [
-            [ 5, 'desc' ]
+            [ 7, 'desc' ]
         ],
         columnDefs: [
             { 
@@ -65,7 +62,7 @@
             },
             {
                 visible: false,
-                target : 5
+                target : 7
             }
         ],
         language: {
@@ -73,7 +70,7 @@
                 previous: '<i class="fa-solid fa-circle-left"></i>',
                 next: '<i class="fa-solid fa-circle-right"></i>'
             }
-  }
+    }
     });
     $(document).on('click','.delete_btn',function(e){
         e.preventDefault();

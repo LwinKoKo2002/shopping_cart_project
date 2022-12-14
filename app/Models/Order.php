@@ -14,10 +14,6 @@ class Order extends Model
         return $this->belongsTo(User::class, 'customer_id');
     }
 
-    public function add_to_cart()
-    {
-        return $this->belongsTo(AddToCart::class, 'add_to_cart_id');
-    }
     /**
      * Get all of the comments for the Order
      *

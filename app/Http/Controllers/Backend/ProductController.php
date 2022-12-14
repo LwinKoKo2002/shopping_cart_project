@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Product;
-use App\Models\Category;
-use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\StoreProduct;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProduct;
 use App\Models\Brand;
-use Exception;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -37,7 +34,7 @@ class ProductController extends Controller
         })
         ->editColumn('product_img', function ($each) {
             return '<img src="'.$each->get_image_path().'" alt="profie image"
-              class="product_img">';
+        class="product_img">';
         })
         ->editColumn('selling_price', function ($each) {
             return number_format($each->selling_price) . "K";

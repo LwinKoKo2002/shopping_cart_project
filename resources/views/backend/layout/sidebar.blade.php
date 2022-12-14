@@ -89,7 +89,18 @@
                         Add To Cart
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{route('admin.order_item.index')}}" class="@yield('order_item-active')">
+                        <i class="metismenu-icon pe-7s-drop"></i>
+                        Order Item
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('admin.order.index')}}" class="@yield('order-active')">
+                        <i class="metismenu-icon pe-7s-edit"></i>
+                        Order
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
