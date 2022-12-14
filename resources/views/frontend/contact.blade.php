@@ -11,34 +11,57 @@
                         <div class="row address-first-part">
                                 <div class="col-12">
                                         <h6 class="text-uppercase">Send Us A Mail</h6>
-                                        <form action="" method="POST">
+                                        <form action="/contact" method="POST">
                                                 @csrf
                                                 <div class="row">
                                                         <div class="col-12 col-md-6">
                                                                 <div class="form-group">
                                                                         <input type="text" class="form-control "
                                                                                 placeholder="Your First Name"
-                                                                                name="fname" required autofocus />
+                                                                                name="fname" value="{{ old('fname') }}"
+                                                                                required autofocus />
+                                                                        @error('fname')
+                                                                        <small class="text-danger">{{ $message
+                                                                                }}</small>
+                                                                        @enderror
                                                                 </div>
                                                         </div>
                                                         <div class="col-12 col-md-6">
                                                                 <div class="form-group">
                                                                         <input type="text" class="form-control"
-                                                                                placeholder="Your Last Name" />
+                                                                                placeholder="Your Last Name"
+                                                                                name="lname" value="{{ old('lname') }}"
+                                                                                required />
+                                                                        @error('lname')
+                                                                        <small class="text-danger">{{ $message
+                                                                                }}</small>
+                                                                        @enderror
                                                                 </div>
                                                         </div>
                                                 </div>
                                                 <div class="row">
                                                         <div class="col-12 col-md-6">
                                                                 <div class="form-group">
-                                                                        <input type="email" class="form-control"
-                                                                                placeholder="Your Email Address" />
+                                                                        <input type="email" class="form-control "
+                                                                                placeholder="Your Email Address"
+                                                                                name="email" value="{{ old('email') }}"
+                                                                                required />
+                                                                        @error('email')
+                                                                        <small class="text-danger">{{ $message
+                                                                                }}</small>
+                                                                        @enderror
                                                                 </div>
                                                         </div>
                                                         <div class="col-12 col-md-6">
                                                                 <div class="form-group">
                                                                         <input type="number" class="form-control"
-                                                                                placeholder="Your Phone Number" />
+                                                                                placeholder="Your Phone Number"
+                                                                                name="phone" required
+                                                                                value="{{ old('phone') }}" />
+                                                                        @error('phone')
+                                                                        <small class="text-danger">{{ $message
+                                                                                }}</small>
+                                                                        @enderror
                                                                 </div>
                                                         </div>
                                                 </div>
@@ -47,7 +70,11 @@
                                                                 <div class="form-group">
                                                                         <textarea name="message" id="" cols="30"
                                                                                 rows="3" class="form-control"
-                                                                                placeholder="Say Something...."></textarea>
+                                                                                placeholder="Say Something....">{{ old('message') }}</textarea>
+                                                                        @error('message')
+                                                                        <small class="text-danger">{{ $message
+                                                                                }}</small>
+                                                                        @enderror
                                                                 </div>
                                                         </div>
                                                 </div>

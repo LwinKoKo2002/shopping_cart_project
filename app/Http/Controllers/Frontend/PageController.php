@@ -6,11 +6,14 @@ use App\Models\City;
 use App\Models\User;
 use App\Models\Brand;
 use App\Models\Order;
+use App\Models\Contact;
 use App\Models\Product;
+use App\Mail\contactMail;
 use App\Models\AddToCart;
 use App\Models\OrderItem;
 use App\Mail\ProductOrder;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -191,7 +194,7 @@ class PageController extends Controller
         foreach ($cartItems as $cart) {
             $cart->delete();
         }
-        Mail::to(auth()->user()->email)->send(new ProductOrder($orderItem));
+        Mail::to(auth()->user()->email)->send(new ProductOrder($order));
         return redirect()->route('home')->with(['success'=>'Successfully ordered.']);
     }
 
@@ -219,5 +222,36 @@ class PageController extends Controller
             'status'=>'success',
             'brand_id'=>$brand->id
         ]);
+    }
+
+    public function storeContact(Request $request)
+    {
+        $request->validate([
+            'fname'=>'required',
+            'lname'=>'required',
+            'email'=>['required',Rule::unique('contacts', 'email')],
+            'phone'=>['required','min:9','max:11',Rule::unique('contacts', 'phone')],
+            'message'=>['required']
+        ]);
+
+        $contact = new Contact();
+        $contact->username = $request->fname ." " .$request->lname;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->message = $request->message;
+        $contact->save();
+        $mail_data=[
+            'shopping_cart'=>'lwinkoko0271@gmail.com',
+            'fromEmail'=>$contact->email,
+            'fromUser'=>$contact->username,
+            'subject'=>'Contact Email',
+            'body'=>$contact->message,
+        ];
+        Mail::send('frontend.mail.contact_mail', $mail_data, function ($message) use ($mail_data) {
+            $message->to($mail_data['shopping_cart'])
+                    ->from($mail_data['fromEmail'], $mail_data['fromUser'])
+                    ->subject($mail_data['subject']);
+        });
+        return redirect()->route('home')->with(['success'=>'Successfully send.']);
     }
 }

@@ -15,10 +15,10 @@ class ProductOrder extends Mailable
      *
      * @return void
      */
-    public $item;
-    public function __construct($orderItem)
+    public $order;
+    public function __construct($order)
     {
-        $this->item = $orderItem;
+        $this->order = $order;
     }
 
     /**
@@ -28,8 +28,10 @@ class ProductOrder extends Mailable
      */
     public function build()
     {
-        return $this->view('frontend.product_mail')->with([
-            'item'=>$this->item
-        ]);
+        return $this->from('lwinkoko0271@gmail.com')
+                    ->view('frontend.mail.product_mail')
+                    ->with([
+                        'item'=>$this->order
+                    ]);
     }
 }

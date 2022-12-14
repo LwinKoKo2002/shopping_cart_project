@@ -23,6 +23,7 @@ Route::post('/add-to-cart', [PageController::class,'add_to_cart']);
 Route::post('/delete-cart/{product}', [PageController::class,'deleteCart']);
 Route::post('/update-cart-quantity', [PageController::class,'updateCart']);
 Route::post('/checkout', [PageController::class,'storeCheckout']);
+Route::post('/contact', [PageController::class,'storeContact']);
 
 Route::middleware(['auth', 'web'])->group(function () {
     Route::get('/load-cart-count', [PageController::class,'load_cart_count']);
