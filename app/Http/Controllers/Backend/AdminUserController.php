@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\AdminUser;
 use Jenssegers\Agent\Agent;
-use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAdminUser;

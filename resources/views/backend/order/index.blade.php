@@ -25,6 +25,7 @@
                 <th>City</th>
                 <th class="denied">Order Items</th>
                 <th>Total Price (MMK)</th>
+                <th class="denied">Action</th>
                 <th class="denied">updated_at</th>
             </thead>
             <tbody></tbody>
@@ -49,10 +50,11 @@
             { data: 'city_id' , name : 'city_id'} ,
             { data: 'order_item' , name : 'order_item'} ,
             { data: 'total' , name : 'total'},
+            {data : 'action' , name : 'action'},
             { data: 'updated_at', name: 'updated_at' }
         ],
         "order": [
-            [ 7, 'desc' ]
+            [ 8, 'desc' ]
         ],
         columnDefs: [
             { 
@@ -62,7 +64,7 @@
             },
             {
                 visible: false,
-                target : 7
+                target : 8
             }
         ],
         language: {
@@ -70,8 +72,31 @@
                 previous: '<i class="fa-solid fa-circle-left"></i>',
                 next: '<i class="fa-solid fa-circle-right"></i>'
             }
-    }
+        }
     });
+    $(document).on('click','.delete_btn',function(e){
+        e.preventDefault();
+        var id = $(this).data("id");
+        Swal.fire({
+        title: 'Are you sure , you want to delete?',
+        showCancelButton: true,
+        reverseButtons : true,
+        focusConfirm : false,
+        focusCancel : false,
+        confirmButtonText: 'Yes,sure',
+        cancelButtonText : 'No,keep it'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url : "/admin/order/" + id,
+                type : "DELETE",
+                success : function(){
+                    dataTable.ajax.reload();
+                }
+            })
+        }
+        })
+    })
 });
 </script>
 @endsection

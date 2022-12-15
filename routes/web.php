@@ -28,6 +28,7 @@ Route::post('/delete-cart/{product}', [PageController::class,'deleteCart']);
 Route::post('/update-cart-quantity', [PageController::class,'updateCart']);
 Route::post('/checkout', [PageController::class,'storeCheckout']);
 Route::post('/contact', [PageController::class,'storeContact'])->name('contact');
+Route::post('/user-account/change-password', [PageController::class,'storeChangePassword'])->name('store-password');
 
 Route::middleware(['auth', 'web'])->group(function () {
     Route::get('/add-to-cart', [PageController::class,'showCart'])->name('showCart');

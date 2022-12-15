@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@section('my_order-active','active')
 @section('title','My Order')
 @section('content')
 <section class="my-order">
@@ -8,8 +9,11 @@
                                 <div class="col-lg-3  d-none d-lg-block">
                                         <div class="card shadow">
                                                 <div class="card-body">
-                                                        <p><a href="{{ route('myAccount') }}">Manage My Account</a></p>
-                                                        <p><a href="{{ route('myOrder') }}">My Orders</a></p>
+                                                        <p class="@yield('my_account-active')"><a
+                                                                        href="{{ route('myAccount') }}">User Account</a>
+                                                        </p>
+                                                        <p class="@yield('my_order-active')"><a
+                                                                        href="{{ route('myOrder') }}">My Orders</a></p>
                                                         <form action="{{ route('logout') }}" method="POST"
                                                                 id="submit_form">
                                                                 @csrf

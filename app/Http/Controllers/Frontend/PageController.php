@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
@@ -271,5 +272,20 @@ class PageController extends Controller
     {
         $brands = Brand::all();
         return view('frontend.changePassword', compact('brands'));
+    }
+
+    public function storeChangePassword(Request $request)
+    {
+        $request->validate([
+            'current_password'=>'required',
+            'new_password'=>['required','string', 'min:8']
+        ]);
+        $user = User::where('id', auth()->id())->first();
+        if (Hash::check($request->current_password, $user->password)) {
+            $user->password = bcrypt($request->new_password);
+            $user->update();
+            return redirect()->route('myAccount')->with(['success'=>'Your password is successfully changed']);
+        }
+        return redirect()->back()->withErrors(['current_password'=>'Your current password is wrong']);
     }
 }

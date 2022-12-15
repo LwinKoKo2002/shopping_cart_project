@@ -11,4 +11,9 @@ class PageController extends Controller
     {
         return view('backend.home');
     }
+
+    public function adminUserAccount()
+    {
+        return view('backend.admin_user.user_account');
+    }
 }

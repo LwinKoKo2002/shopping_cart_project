@@ -40,6 +40,10 @@ html {
     color: white;
 }
 
+.active {
+    font-weight: bolder;
+}
+
 button:focus {
     outline: none !important;
     box-shadow: none !important;
@@ -1818,6 +1822,7 @@ input[type="checkbox"] {
 /*------------------- Sweetalert2 ------------------------*/
 .swal2-popup {
     width: 478px !important;
+    z-index: 2030 !important;
 }
 
 .swal2-actions {
@@ -2038,6 +2043,24 @@ td {
     box-shadow: 0 4px 9px -4px var(--light-danger);
     transition: 0.5s;
     color: white;
+}
+
+.my-account input {
+    margin-top: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 23px;
+    background-color: var(--white);
+}
+
+.my-account input:focus {
+    outline: none;
+    box-shadow: none;
+    border: 2px solid var(--light-danger);
+}
+
+.my-account small {
+    font-size: 14px;
 }
 
 @media screen and (max-width: 820px) {

@@ -45,8 +45,9 @@
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true"
                                     class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" class="dropdown-item">User
-                                        Account</button>
+                                    <a type="button" tabindex="0" class="dropdown-item"
+                                        href="{{ route('admin.admin_user.account') }}">User
+                                        Account</a>
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                     <form action="{{route('admin.logout')}}" method="post">
                                         @csrf

@@ -35,4 +35,5 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin_user')->group(fun
     Route::get('/admin/order/datatable/ssd', [OrderController::class,'ssd'])->name('order.datatable.ssd');
     Route::get('/admin/order_item/index', [OrderItemController::class,'index'])->name('order_item.index');
     Route::get('/admin/order_item/datatable/ssd', [OrderItemController::class,'ssd'])->name('order_item.datatable.ssd');
+    Route::get('/admin_user/account', [PageController::class,'adminUserAccount'])->name('admin_user.account');
 });

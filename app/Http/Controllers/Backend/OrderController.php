@@ -58,6 +58,10 @@ class OrderController extends Controller
         ->editColumn('total', function ($each) {
             return number_format($each->total);
         })
+        ->editColumn('action', function ($each) {
+            $delete_icon = '<a class="btn btn-danger delete_btn ml-xl-2 ml-lg-2 ml-md-2 ml-sm-2 ml-2 delete-icon my-2" href="#" data-id="'.$each->id.'">Delete</a>';
+            return "<div class='action'>" . $delete_icon . "</div>";
+        })
         ->filterColumn('customer', function ($query, $keyword) {
             $query->whereHas('customer', function ($query) use ($keyword) {
                 $query->where('name', 'like', '%'.$keyword.'%');
@@ -68,7 +72,13 @@ class OrderController extends Controller
                 $query->where('name', 'like', '%'.$keyword.'%');
             });
         })
-        ->rawColumns(['order_item'])
+        ->rawColumns(['order_item','action'])
         ->make(true);
+    }
+
+    public function destroy(Order $order)
+    {
+        $order->delete();
+        return "success";
     }
 }
