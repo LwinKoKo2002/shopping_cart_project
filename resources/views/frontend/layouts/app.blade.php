@@ -28,6 +28,14 @@
 </head>
 
 <body id="up" class="d-flex flex-column justify-content-between min-vh-100">
+    <!--------- Alert Message ----------->
+    @if (session('success_message'))
+    <div class="alert-message">
+        <div class="alert alert-success" role="alert">
+            {{ session('success_message') }}
+        </div>
+    </div>
+    @endif
     <!--------- Start of Sidebar ----------->
     @include('frontend.layouts.sidebar')
     <!--------- Start of Navbar ----------->
@@ -85,7 +93,31 @@
             $( "#brand_mini_search" ).autocomplete({
         source: availableTags
             });
+        }     
+        fadeOut();
+        function fadeOut(){
+            var alert_message = document.querySelector('.alert-message');
+            setTimeout(() => {
+                alert_message.style.display = "none";
+            }, 3000);
         }
+
+        $('.logoutBtn').click(function (e) { 
+            e.preventDefault();
+            Swal.fire({
+        title: 'Are you sure , you want to logout?',
+        showCancelButton: true,
+        reverseButtons : true,
+        focusConfirm : false,
+        focusCancel : false,
+        confirmButtonText: 'Yes',
+        cancelButtonText : 'No'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            $('#submit_form').submit();
+        }
+        })
+        });
     </script>
     </script>
 </body>

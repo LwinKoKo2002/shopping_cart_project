@@ -22,6 +22,7 @@
                 <th class="denied">Product Image</th>
                 <th>Product </th>
                 <th>Quantity</th>
+                <th>Action</th>
                 <th class="denied">updated_at</th>
             </thead>
             <tbody></tbody>
@@ -43,10 +44,11 @@
             { data: 'product_img' , name : 'product_img'} ,
             { data: 'product_id' , name : 'product_id'} ,
             { data: 'quantity' , name : 'quantity'} ,
+            { data: 'action' , name : 'action'} ,
             { data: 'updated_at', name: 'updated_at' }
         ],
         "order": [
-            [ 4, 'desc' ]
+            [ 5, 'desc' ]
         ],
         columnDefs: [
             { 
@@ -56,7 +58,7 @@
             },
             {
                 visible: false,
-                target : 4
+                target : 5
             }
         ],
         language: {
@@ -66,6 +68,29 @@
             }
     }
     });
+    $(document).on('click','.delete_btn',function(e){
+        e.preventDefault();
+        var id = $(this).data("id");
+        Swal.fire({
+        title: 'Are you sure , you want to delete?',
+        showCancelButton: true,
+        reverseButtons : true,
+        focusConfirm : false,
+        focusCancel : false,
+        confirmButtonText: 'Yes,sure',
+        cancelButtonText : 'No,keep it'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url : "/admin/add-to-cart/" + id,
+                type : "DELETE",
+                success : function(){
+                    dataTable.ajax.reload();
+                }
+            })
+        }
+        })
+    })
 });
 </script>
 @endsection

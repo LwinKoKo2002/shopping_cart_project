@@ -27,6 +27,10 @@ class AddToCartController extends Controller
             }
             return '-';
         })
+        ->editColumn('action', function ($each) {
+            $delete_icon = '<a class="btn btn-danger delete_btn ml-xl-2 ml-lg-2 ml-md-2 ml-sm-2 ml-2 delete-icon my-2" href="#" data-id="'.$each->id.'">Delete</a>';
+            return "<div class='action'>" . $delete_icon . "</div>";
+        })
         ->editColumn('customer_id', function ($each) {
             if ($each->customer) {
                 return $each->customer->name;
@@ -53,7 +57,13 @@ class AddToCartController extends Controller
         ->editColumn('updated_at', function ($each) {
             return $each->updated_at->format('Y-m-d H:i:s');
         })
-        ->rawColumns(['product_img','user_agent'])
+        ->rawColumns(['product_img','user_agent','action'])
         ->make(true);
+    }
+
+    public function destroy(AddToCart $add_to_cart)
+    {
+        $add_to_cart->delete();
+        return 'success';
     }
 }

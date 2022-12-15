@@ -79,7 +79,7 @@
                                                         </div>
                                                 </div>
                                                 <div class="d-flex justify-content-center justify-content-md-end">
-                                                        <button type="submit" class="btn btn-warning">Submit</button>
+                                                        <button type="submit" class="btn btn-theme">Submit</button>
                                                 </div>
                                         </form>
                                 </div>
@@ -134,8 +134,8 @@
                                                                 class="mr-1" />
                                                 </div>
                                                 <div class="contact-item">
-                                                        <p class="font-weight-bold">3548 Columbia Mine Road,</p>
-                                                        <p class="text-black-50">Wheeling, West Virginia, 26003</p>
+                                                        <p class="font-weight-bold">Yadanar Thiri St,</p>
+                                                        <p class="text-black-50">Dawbone, No.271 , 2B</p>
                                                 </div>
                                         </div>
                                 </div>

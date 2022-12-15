@@ -72,29 +72,6 @@
             }
     }
     });
-    $(document).on('click','.delete_btn',function(e){
-        e.preventDefault();
-        var id = $(this).data("id");
-        Swal.fire({
-        title: 'Are you sure , you want to delete?',
-        showCancelButton: true,
-        reverseButtons : true,
-        focusConfirm : false,
-        focusCancel : false,
-        confirmButtonText: 'Yes,sure',
-        cancelButtonText : 'No,keep it'
-        }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url : "/admin/add-to-cart/" + id,
-                type : "DELETE",
-                success : function(){
-                    dataTable.ajax.reload();
-                }
-            })
-        }
-        })
-    })
 });
 </script>
 @endsection

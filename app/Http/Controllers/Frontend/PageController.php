@@ -253,4 +253,23 @@ class PageController extends Controller
         });
         return redirect()->route('home')->with(['success'=>'Successfully send.']);
     }
+
+    public function myOrder()
+    {
+        $brands = Brand::all();
+        $orders = Order::where('customer_id', auth()->id())->get();
+        return view('frontend.myOrder', compact('brands', 'orders'));
+    }
+
+    public function myAccount()
+    {
+        $brands = Brand::all();
+        return view('frontend.myAccount', compact('brands'));
+    }
+
+    public function changePassword()
+    {
+        $brands = Brand::all();
+        return view('frontend.changePassword', compact('brands'));
+    }
 }

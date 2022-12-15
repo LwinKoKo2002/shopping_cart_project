@@ -32,11 +32,24 @@
                         </p>
                         @endguest
                         @auth
-                        <p class="mb-0 d-none d-lg-block text-white mr-2">{{ auth()->user()->name }}</p>
-                        <form action="{{ route('logout') }}" method="POST" class="d-none d-lg-block">
-                            @csrf
-                            <button type="submit " class="logout-btn btn btn-link mr-2">Logout</button>
-                        </form>
+                        <div class="dropdown mb-0 d-none d-lg-block text-white mr-lg-2 ml-md-5">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ auth()->user()->name }}'s Account
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{ route('myAccount') }}"><i
+                                        class="fa-regular fa-face-smile ml-0 mr-3"></i>User Account</a>
+                                <a class="dropdown-item" href="{{ route('myOrder') }}"><i
+                                        class="fa-sharp fa-solid fa-box ml-0 mr-3"></i>My
+                                    Orders</a>
+                                <form action="{{ route('logout') }}" method="POST" id="submit_form">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item logoutBtn"><i
+                                            class="fa-sharp fa-solid fa-arrow-right-from-bracket ml-0 mr-3"></i>Logout</button>
+                                </form>
+                            </div>
+                        </div>
                         @endauth
                         <p class="mb-0 text-white d-lg-none d-block">
                             <i class="fas fa-bars show-sidebar-btn"></i>
@@ -53,7 +66,7 @@
                             <span class="badge badge-pill badge-light cart_count"></span>
                             @endauth
                         </p>
-                        <span class="text-white ml-2 d-none d-md-block">Cart</span>
+                        <span class="text-white ml-lg-2 ml-md-3 d-none d-md-block">Cart</span>
                     </div>
                 </div>
             </div>

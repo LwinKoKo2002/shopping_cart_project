@@ -24,6 +24,22 @@ html {
     scroll-behavior: smooth;
 }
 
+.alert-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2020;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.alert-message .alert-success {
+    padding: 13px 30px;
+    border-radius: 8px;
+    background-color: var(--light-success);
+    color: white;
+}
+
 button:focus {
     outline: none !important;
     box-shadow: none !important;
@@ -217,6 +233,20 @@ input[type="number"] {
 .account-nav .cart_count:hover {
     cursor: pointer;
     transform: scale(1.2);
+}
+
+.account-nav .btn-link {
+    text-decoration: none;
+    color: white;
+}
+
+.account-nav .dropdown-menu a {
+    color: black;
+    margin: 10px 0px;
+}
+
+.account-nav .dropdown-toggle::after {
+    display: none;
 }
 
 .search-nav-two {
@@ -740,16 +770,12 @@ input[type="number"] {
 .footer-item a {
     text-decoration: none;
     color: #212529;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .footer-item a:hover {
-    color: var(--warning);
+    color: var(--light-danger);
     font-weight: bold;
-}
-
-.footer-item a:active {
-    font-size: 14px;
 }
 
 .footer-feature {
@@ -774,19 +800,19 @@ input[type="number"] {
 }
 
 .footer-feature .fa-facebook {
-    color: #1778f2;
+    color: #356db1;
 }
 
-.footer-feature .fa-twitter {
+.footer-feature .fa-telegram {
     color: #1da1f2;
 }
 
 .footer-feature .fa-instagram {
-    color: #871a1ab4;
+    color: #8e2b2bb4;
 }
 
-.footer-feature .fa-youtube {
-    color: #fd1d1d;
+.footer-feature .fa-github {
+    color: var(--white);
 }
 
 @media screen and (max-width: 480px) {
@@ -867,17 +893,18 @@ input[type="number"] {
 
 .address button {
     padding: 10px 40px;
-    font-size: 14px;
+    font-size: 16px;
     margin-top: 20px;
     border: none;
     border-radius: 0px;
-    background-color: var(--warning) !important;
-    box-shadow: 0 4px 9px -4px var(--warning);
+    background-color: var(--light-danger) !important;
+    box-shadow: 0 4px 9px -4px var(--light-danger);
     transition: 0.5s;
+    color: white;
 }
 
 .address button:hover {
-    background-color: var(--light-warning);
+    background-color: var(--light-danger);
 }
 
 .address button:active {
@@ -1028,7 +1055,7 @@ input[type="number"] {
     }
 }
 
-/*------------------------ Auth Form ------------------------*/
+/*------------------------ User Auth Form ------------------------*/
 .auth {
     margin-top: 30px;
 }
@@ -1102,7 +1129,79 @@ input[type="number"] {
         margin-top: 150px;
     }
 }
+/*------------------------ Admin Auth Form ------------------------*/
+.admin-auth .card {
+    border-radius: 10px;
+    border: none;
+    padding: 30px !important;
+}
 
+.admin-auth h3 {
+    text-align: center;
+    margin: 20px 0px 10px 0px;
+}
+
+.admin-auth p {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 15px;
+}
+
+.admin-auth .form-control {
+    padding: 25px 20px !important;
+}
+
+.admin-auth .form-group {
+    margin-bottom: 40px;
+}
+
+.admin-auth label {
+    color: rgb(121, 120, 120);
+}
+.admin-auth input {
+    border-radius: 0px;
+    margin-bottom: 5px;
+    background-color: var(--white);
+    border: none;
+    border-bottom: 1px solid rgb(151, 149, 149);
+}
+
+.admin-auth input:focus {
+    outline: none;
+    box-shadow: none;
+    border: 2px solid var(--light-danger);
+    border-radius: 5px;
+}
+
+.admin-auth small {
+    font-size: 14px;
+}
+
+.admin-auth button {
+    background-color: var(--light-danger);
+    letter-spacing: 1px;
+    font-size: 16px;
+    color: var(--white);
+    font-weight: bolder;
+    padding: 13px 60px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    transition: 0.5s;
+    box-shadow: 0 4px 9px -4px var(--light-danger);
+}
+
+.admin-auth button:hover {
+    background-color: var(--light-danger);
+    color: var(--white);
+    font-weight: bolder;
+}
+
+@media screen and (max-width: 480px) {
+    .admin-auth .card {
+        padding: 5px !important;
+    }
+}
 /*---------------------------- Product -------------------------------*/
 .product {
     margin: 50px 0px;
@@ -1839,4 +1938,110 @@ input[type="checkbox"] {
 .verify-email .btn-link {
     padding-left: 0px !important;
     color: var(--light-danger);
+}
+
+/*------------------- My Order ------------------------*/
+.my-order {
+    margin: 80px 0px;
+}
+
+.my-order a {
+    text-decoration: none;
+    color: var(--nav-color);
+}
+
+.my-order .btn-link {
+    color: var(--nav-color);
+    text-decoration: none;
+}
+
+.my-order h3 {
+    font-size: 25px;
+    margin: 10px 0px;
+}
+
+.no-order {
+    margin: 30px;
+}
+
+.my-order img {
+    width: 60px;
+}
+
+.my-order table,
+th,
+td {
+    text-align: center;
+}
+.my-order .no-order i {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.no-order p {
+    font-size: 14px;
+}
+
+.no-order .btn-theme {
+    padding: 13px 40px;
+    font-size: 16px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 0px;
+    background-color: var(--light-danger) !important;
+    box-shadow: 0 4px 9px -4px var(--light-danger);
+    transition: 0.5s;
+    color: white;
+}
+
+@media screen and (max-width: 820px) {
+    .my-order {
+        margin: 150px 0px;
+    }
+}
+
+/*------------------- My Account ------------------------*/
+.my-account {
+    margin: 80px 0px;
+}
+
+.my-account a {
+    text-decoration: none;
+    color: var(--nav-color);
+}
+
+.my-account .btn-link {
+    color: var(--nav-color);
+    text-decoration: none;
+}
+
+.my-account h3 {
+    font-size: 25px;
+    margin: 10px 0px;
+}
+
+.my-account p {
+    font-size: 16px;
+}
+
+.my-account .text-muted {
+    font-size: 14px;
+}
+
+.my-account .btn-theme {
+    padding: 13px 40px;
+    font-size: 16px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 0px;
+    background-color: var(--light-danger) !important;
+    box-shadow: 0 4px 9px -4px var(--light-danger);
+    transition: 0.5s;
+    color: white;
+}
+
+@media screen and (max-width: 820px) {
+    .my-account {
+        margin: 150px 0px;
+    }
 }

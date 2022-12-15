@@ -51,5 +51,6 @@ class LoginController extends Controller
         $user->user_agent = $request->server('HTTP_USER_AGENT');
         $user->login_time = date('Y-m-d H:i:s');
         $user->update();
+        return redirect('/')->with(['success_message'=>'Welcome Back!']);
     }
 }
