@@ -14,6 +14,7 @@ use App\Models\OrderItem;
 use App\Mail\ProductOrder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -148,49 +149,56 @@ class PageController extends Controller
             [
                 'fname.required'=>'please filled your first name.',
                 'lname.required'=>'please filled your last name.'
-            ]
+                ]
         );
-        $order = new Order();
-        $order->customer_id = auth()->id();
-        $order->fname = $request->fname;
-        $order->lname = $request->lname;
-        $order->email = $request->email;
-        $order->phone = $request->phone;
-        $order->address = $request->address;
-        $order->city_id = $request->city_id;
-        $order->total = $request->total;
-        $order->save();
-
-        $cartItems = AddToCart::where('customer_id', auth()->id())->get();
-        foreach ($cartItems as $cart) {
-            $orderItem = new OrderItem();
-            $orderItem->order_id = $order->id;
-            $orderItem->product_id = $cart->product_id;
-            $orderItem->quantity = $cart->quantity;
-            $orderItem->price = $cart->product->selling_price;
-            $orderItem->save();
-
-            $product = Product::where('id', $cart->product_id)->first();
-            $product->quantity = $product->quantity - $cart->quantity;
-            $product->update();
+        DB::beginTransaction();
+        try {
+            DB::commit();
+            $order = new Order();
+            $order->customer_id = auth()->id();
+            $order->fname = $request->fname;
+            $order->lname = $request->lname;
+            $order->email = $request->email;
+            $order->phone = $request->phone;
+            $order->address = $request->address;
+            $order->city_id = $request->city_id;
+            $order->total = $request->total;
+            $order->save();
+    
+            $cartItems = AddToCart::where('customer_id', auth()->id())->get();
+            foreach ($cartItems as $cart) {
+                $orderItem = new OrderItem();
+                $orderItem->order_id = $order->id;
+                $orderItem->product_id = $cart->product_id;
+                $orderItem->quantity = $cart->quantity;
+                $orderItem->price = $cart->product->selling_price;
+                $orderItem->save();
+    
+                $product = Product::where('id', $cart->product_id)->first();
+                $product->quantity = $product->quantity - $cart->quantity;
+                $product->update();
+            }
+    
+            if (auth()->user()->address == null) {
+                $user = User::where('id', auth()->id())->first();
+                $user->email = $request->email;
+                $user->phone = $request->phone;
+                $user->address = $request->address;
+                $user->city_id = $request->city_id;
+                $user->fname = $request->fname;
+                $user->lname = $request->lname;
+                $user->update();
+            }
+            $cartItems = AddToCart::where('customer_id', auth()->id())->get();
+            foreach ($cartItems as $cart) {
+                $cart->delete();
+            }
+            Mail::to(auth()->user()->email)->send(new ProductOrder($order));
+            return redirect()->route('home')->with(['success'=>'Successfully ordered.']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->withErrors(['fname'=>$th->getMessage()]);
         }
-
-        if (auth()->user()->address == null) {
-            $user = User::where('id', auth()->id())->first();
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            $user->address = $request->address;
-            $user->city_id = $request->city_id;
-            $user->fname = $request->fname;
-            $user->lname = $request->lname;
-            $user->update();
-        }
-        $cartItems = AddToCart::where('customer_id', auth()->id())->get();
-        foreach ($cartItems as $cart) {
-            $cart->delete();
-        }
-        Mail::to(auth()->user()->email)->send(new ProductOrder($order));
-        return redirect()->route('home')->with(['success'=>'Successfully ordered.']);
     }
 
     public function contact()

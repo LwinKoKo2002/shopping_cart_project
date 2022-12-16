@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\AdminUser;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -24,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('view', function (AdminUser $adminUser) {
+            return $adminUser->id === 1;
+        });
     }
 }

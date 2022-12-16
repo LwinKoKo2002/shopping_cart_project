@@ -40,12 +40,14 @@
                         Admin Dashboard
                     </a>
                 </li>
+                @can('view')
                 <li class="mb-2">
                     <a href="{{route('admin.admin-user.index')}}" class="@yield('admin-active')">
                         <i class="metismenu-icon pe-7s-users"></i>
                         Admin User
                     </a>
                 </li>
+                @endcan
                 <li>
                     <a href="{{route('admin.duration.index')}}" class="@yield('duration-active')">
                         <i class="metismenu-icon pe-7s-clock"></i>
