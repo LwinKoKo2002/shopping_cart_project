@@ -37,9 +37,9 @@
     </div>
     @endif
     <!--------- Start of Sidebar ----------->
-    @include('frontend.layouts.sidebar')
+    <x-sidebar-component />
     <!--------- Start of Navbar ----------->
-    @include('frontend.layouts.navbar',['brands'=> $brands ])
+    <x-navbar-component />
     @if (request()->is('/'))
     <!----------- Start Carousel Section ----------->
     @include('frontend.layouts.carousel',['products'=>$products])
@@ -53,7 +53,7 @@
     @include('frontend.layouts.brand_logo')
     @endif
     <!--------- Footer Section ----------->
-    @include('frontend.layouts.footer')
+    <x-footer-component />
     <!-- Link to JQuery 3.6.0 cdn js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"

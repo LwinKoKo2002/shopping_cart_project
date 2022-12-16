@@ -66,7 +66,6 @@ class AdminUserController extends Controller
         return view('backend.admin_user.create');
     }
 
- 
     public function store(StoreAdminUser $request)
     {
         $admin_user = new AdminUser();

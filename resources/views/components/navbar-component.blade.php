@@ -51,15 +51,33 @@
                             </div>
                         </div>
                         @endauth
-                        <p class="mb-0 text-white d-lg-none d-block">
+                        <p class="mb-0 text-white d-lg-none d-block ml-m-3">
                             <i class="fas fa-bars show-sidebar-btn"></i>
                         </p>
-                        <p class="mb-0 text-white d-md-none d-block">
-                            <a href=""><i class="fas fa-search"></i></a>
-                        </p>
-                        <p class="mb-0 text-white d-lg-none d-block">
-                            <a href="login.html"><i class="fas fa-user"></i></a>
-                        </p>
+                        <div class="dropdown mb-0 text-white d-lg-none d-block dropleft ml-3">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                @auth
+                                <a class="dropdown-item" href="{{ route('myAccount') }}"><i
+                                        class="fa-regular fa-face-smile ml-0 mr-3"></i>User Account</a>
+                                <a class="dropdown-item" href="{{ route('myOrder') }}"><i
+                                        class="fa-sharp fa-solid fa-box ml-0 mr-3"></i>My
+                                    Orders</a>
+                                <form action="{{ route('logout') }}" method="POST" id="submit_form">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item logoutBtn"><i
+                                            class="fa-sharp fa-solid fa-arrow-right-from-bracket ml-0 mr-3"></i>Logout</button>
+                                </form>
+                                @endauth
+                                @guest
+                                <a class="dropdown-item" href="{{ route('login') }}">Login</a>
+                                <a class="dropdown-item" href="{{ route('register') }}">Register</a>
+                                @endguest
+                            </div>
+                        </div>
                         <p class="mb-0 text-white cart">
                             <a href="{{ route('showCart') }}"><i class="fas fa-shopping-cart"></i></a>
                             @auth
@@ -93,31 +111,20 @@
                 <li class="ml-lg-1">
                     <a href="/">Home</a>
                 </li>
-
+                @foreach ($categories as $category)
                 <li class="ml-xl-5 ml-lg-5 text-center dropdown show">
-                    <a class="dropdown-toggle" href="product.html" id="dropdownMenuLink" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Smart Phone
+                    <a class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" style="cursor: pointer">
+                        {{ $category->name }}
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        @foreach ($brands->where('category_id',1) as $brand)
+                        @foreach ($category->brands as $brand)
                         <a class="dropdown-item" href="/brands/{{$brand->id}}">{{$brand->name}}</a>
                         @endforeach
                     </div>
                 </li>
-                <li class="ml-xl-5 ml-lg-5 text-center dropdown show">
-                    <a class="dropdown-toggle" href="product.html" id="dropdownMenuLink" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Tablet
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        @foreach ($brands->where('category_id',2) as $brand)
-                        <a class="dropdown-item" href="/brands/{{$brand->id}}">{{$brand->name}}</a>
-                        @endforeach
-                    </div>
-                </li>
+                @endforeach
                 <li class="ml-xl-5 ml-lg-5 text-center">
                     <a href="{{ route('contact') }}">Contact Us</a>
                 </li>

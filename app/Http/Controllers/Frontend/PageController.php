@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Order;
 use App\Models\Contact;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\AddToCart;
 use App\Models\OrderItem;
 use App\Mail\ProductOrder;
@@ -22,28 +23,24 @@ class PageController extends Controller
 {
     public function index()
     {
-        $brands = Brand::all();
         $products = Product::all();
+        $brands = Brand::all();
         return view('frontend.home', [
-            'brands'=>$brands,
-            'products'=>$products
+            'products'=>$products,
+            'brands'=>$brands
         ]);
     }
 
     public function brand(Brand $brand)
     {
-        $brands = Brand::all();
         return view('frontend.brand', [
-            'brands'=>$brands,
             'brand'=>$brand
         ]);
     }
 
     public function product(Product $product)
     {
-        $brands = Brand::all();
         return view('frontend.product', [
-            'brands'=>$brands,
             'product'=>$product
         ]);
     }
@@ -89,9 +86,8 @@ class PageController extends Controller
 
     public function showCart()
     {
-        $brands = Brand::all();
         $carts = AddToCart::where('customer_id', auth()->id())->get();
-        return view('frontend.showCart', compact('carts', 'brands'));
+        return view('frontend.showCart', compact('carts'));
     }
 
     public function deleteCart(Product $product)
@@ -133,10 +129,9 @@ class PageController extends Controller
 
     public function checkout()
     {
-        $brands = Brand::all();
         $carts = AddToCart::where('customer_id', auth()->id())->get();
         $cities = City::all();
-        return view('frontend.checkout', compact('brands', 'carts', 'cities'));
+        return view('frontend.checkout', compact('carts', 'cities'));
     }
 
     public function storeCheckout(Request $request)
@@ -200,8 +195,7 @@ class PageController extends Controller
 
     public function contact()
     {
-        $brands = Brand::all();
-        return view('frontend.contact', compact('brands'));
+        return view('frontend.contact');
     }
 
     public function autoComplete()
@@ -257,21 +251,18 @@ class PageController extends Controller
 
     public function myOrder()
     {
-        $brands = Brand::all();
         $orders = Order::where('customer_id', auth()->id())->get();
-        return view('frontend.myOrder', compact('brands', 'orders'));
+        return view('frontend.myOrder', compact('orders'));
     }
 
     public function myAccount()
     {
-        $brands = Brand::all();
-        return view('frontend.myAccount', compact('brands'));
+        return view('frontend.myAccount');
     }
 
     public function changePassword()
     {
-        $brands = Brand::all();
-        return view('frontend.changePassword', compact('brands'));
+        return view('frontend.changePassword');
     }
 
     public function storeChangePassword(Request $request)
@@ -287,5 +278,13 @@ class PageController extends Controller
             return redirect()->route('myAccount')->with(['success'=>'Your password is successfully changed']);
         }
         return redirect()->back()->withErrors(['current_password'=>'Your current password is wrong']);
+    }
+
+    public function category(Category $category)
+    {
+        $brands = Brand::where('category_id', $category->id)->get();
+        return view('frontend.category', [
+            'brands'=>$brands
+        ]);
     }
 }
