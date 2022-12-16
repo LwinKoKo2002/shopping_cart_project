@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
@@ -36,4 +37,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin_user')->group(fun
     Route::get('/admin/order_item/index', [OrderItemController::class,'index'])->name('order_item.index');
     Route::get('/admin/order_item/datatable/ssd', [OrderItemController::class,'ssd'])->name('order_item.datatable.ssd');
     Route::get('/admin_user/account', [PageController::class,'adminUserAccount'])->name('admin_user.account');
+    Route::get('/admin/contact/index', [ContactController::class,'contact'])->name('contact');
+    Route::get('/admin/contact/ssd', [ContactController::class,'ssd'])->name('contact.ssd');
+    Route::post('/contact/{contact}', [ContactController::class,'destroy']);
 });

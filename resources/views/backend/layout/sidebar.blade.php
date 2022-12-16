@@ -101,6 +101,12 @@
                         Order
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('admin.contact')}}" class="@yield('contact-active')">
+                        <i class="metismenu-icon   pe-7s-paper-plane"></i>
+                        Contact
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
