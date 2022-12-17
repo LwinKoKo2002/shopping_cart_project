@@ -17,8 +17,7 @@
                                 <div class="product-title">
                                     <h5>{{$brand->name}}</h5>
                                     <p class="text-black-50">
-                                        {{$brand->products->count()}} items found in
-                                        <span>{{$brand->name}}</span>
+                                        {{$brand->products->count()}} products
                                     </p>
                                 </div>
                             </div>

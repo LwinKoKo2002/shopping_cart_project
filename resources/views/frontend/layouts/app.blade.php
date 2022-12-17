@@ -80,20 +80,25 @@
             url: "/auto-complete",
             success: function (response) {
                 startComplete(response);
-                startCompleteTwo(response);
+                startCompleteTwo(response)
             }
         });
+
+        //Search Feature For Desktop Device
         function startComplete(availableTags){
             $( "#brand_search" ).autocomplete({
-        source: availableTags
+            source: availableTags
             });
         }
 
+    //Search Feature For Mobile Device
         function startCompleteTwo(availableTags){
-            $( "#brand_mini_search" ).autocomplete({
-        source: availableTags
+            $( "#brand_search_two" ).autocomplete({
+            source: availableTags
             });
         }     
+
+        //Alert Message For User Reactive
         fadeOut();
         function fadeOut(){
             var alert_message = document.querySelector('.alert-message');
@@ -102,6 +107,7 @@
             }, 3000);
         }
 
+        //Logout Button For Customer
         $('.logoutBtn').click(function (e) { 
             e.preventDefault();
             Swal.fire({

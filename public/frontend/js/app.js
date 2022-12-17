@@ -4,7 +4,7 @@ $(document).ready(function (event) {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-
+// Count For Add To Cart
   loadCartCount();
   function loadCartCount(){
     $.ajax({
@@ -130,7 +130,7 @@ $('.changeBtn').click(function(e){
   });
 });
 
-//Search Feature Submit Button
+// Search Feature For Desktop Device
 $(".submit_btn").click(function(e){
   e.preventDefault();
   var brand_search = $('.brand_search').val();
@@ -145,6 +145,23 @@ $(".submit_btn").click(function(e){
     }
   });
 })
+
+//Search Feature for Mobile Device
+$(".submit_btn_two").click(function(e){
+  e.preventDefault();
+  var search_value = $('.brand_search_two').val();
+  $.ajax({
+    url: "/brand-search-two",
+    type: "GET",
+    data: { search_value },
+    success: function (response) {
+      if(response.status == 'success'){
+          window.location.replace( "/brands/"+response.brand_id_two);
+      }
+    }
+  });
+})
+
 // Slider
 $(".notebook-slide").slick({
   arrows: false,

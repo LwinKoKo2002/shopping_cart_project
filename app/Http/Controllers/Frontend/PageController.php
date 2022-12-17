@@ -216,6 +216,16 @@ class PageController extends Controller
         return $data;
     }
 
+    public function autoCompleteTwo()
+    {
+        $brands = Brand::all();
+        $dataTwo = [];
+        foreach ($brands as $brand) {
+            $dataTwo[] = $brand->name;
+        }
+        return $dataTwo;
+    }
+
     public function brandSearch()
     {
         $brand_search = request()->brand_search;
@@ -223,6 +233,16 @@ class PageController extends Controller
         return response()->json([
             'status'=>'success',
             'brand_id'=>$brand->id
+        ]);
+    }
+
+    public function brandSearchTwo()
+    {
+        $brand_search_two = request()->search_value;
+        $brand = Brand::where('name', 'like', '%'.$brand_search_two.'%')->first();
+        return response()->json([
+            'status'=>'success',
+            'brand_id_two'=>$brand->id
         ]);
     }
 

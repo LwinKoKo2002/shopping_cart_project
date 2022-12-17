@@ -92,10 +92,10 @@
                 <div class="col-12">
                     <div class="search-nav-two">
                         <div class="search-input">
-                            <input type="text" name="search" placeholder="Search ...." class="form-control"
-                                id="brand_mini_search" class="brand_search" />
+                            <input type="search" name="search" placeholder="Search ...."
+                                class="form-control brand_search_two" id="brand_search_two" />
                         </div>
-                        <button class="btn-theme submit_btn">
+                        <button class="btn-theme submit_btn_two">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
