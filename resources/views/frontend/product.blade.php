@@ -82,26 +82,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="row">
-                <div class="col-lg-7 col-md-12 col-sm-12 col-12">
-                    <div class="card review shadow-sm">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="review-item">
-                                    <h6>Customer Reviews</h6>
-                                    <p class="text-black-50">No reviews yet</p>
-                                </div>
-                                <div class="review-button">
-                                    <button class="btn btn-theme add-comment-review">
-                                        Write a review
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="row comment-review"></div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </section>
