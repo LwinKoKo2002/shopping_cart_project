@@ -13,10 +13,10 @@
                             <p>Rear Camera {{$product->front_camera}}</p>
                         </div>
                         <h5>K {{number_format($product->selling_price)}}</h5>
-                        <button class="btn btn-theme">
+                        <a class="btn btn-theme" href="/products/{{ $product->id }}">
                             <i class="fa-sharp fa-solid fa-cart-shopping"></i>
                             Shop now!
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
